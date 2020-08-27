@@ -91,45 +91,51 @@ class GetData extends CI_Controller {
 		foreach ($imam as $imm) {
 			// echo $imm."<br>";
 			if($imm == 'ahmad'){
-				$quire = "SELECT * FROM ahmad WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+				$quire = "(SELECT * FROM ahmad WHERE Isi_Indonesia LIKE '%".$this->input->post('cari')."%' ORDER BY  CASE
+					WHEN Isi_Indonesia = '".$this->input->post('cari')."' THEN 0
+				    WHEN Isi_Indonesia LIKE '%".$this->input->post('cari')."' THEN 1
+				    WHEN Isi_Indonesia LIKE '%".$this->input->post('cari')."%' THEN 2
+				    WHEN Isi_Indonesia LIKE '".$this->input->post('cari')."%' THEN 3
+				    ELSE 4
+				  END, Isi_Indonesia ASC)";
 			}else if($imm == 'annasai'){
 				if($quire == ''){
 					$quire = $quire . "SELECT * FROM annasai WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
 				}else{
-					$quire = $quire .  " UNION SELECT * FROM annasai WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire .  " UNION SELECT * FROM annasai WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}
 			}else if($imm == 'bukhari'){
 				if($quire == ''){
-					$quire = $quire . "SELECT * FROM bukhari WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire . "SELECT * FROM bukhari WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}else{
-					$quire = $quire .  " UNION SELECT * FROM bukhari WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire .  " UNION SELECT * FROM bukhari WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}
 			}else if($imm == 'ibnu_majah'){
 				if($quire == ''){
-					$quire =  $quire . "SELECT * FROM ibnumajah WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire =  $quire . "SELECT * FROM ibnumajah WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}else{
-					$quire =  $quire . " UNION SELECT * FROM ibnumajah WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire =  $quire . " UNION SELECT * FROM ibnumajah WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}
 
 			}else if($imm == 'malik'){
 				if($quire == ''){
-					$quire = $quire . "SELECT * FROM malik WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire . "SELECT * FROM malik WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}else{
-					$quire = $quire . " UNION SELECT * FROM malik WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire . " UNION SELECT * FROM malik WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}
 
 			}else if($imm == 'muslim'){
 				if($quire == ''){
-					$quire = $quire . "SELECT * FROM muslim WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire . "SELECT * FROM muslim WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}else{
-					$quire = $quire . " UNION SELECT * FROM muslim WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire . " UNION SELECT * FROM muslim WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}
 
 			}else if($imm == 'tirmizi'){
 				if($quire == ''){
-					$quire = $quire . "SELECT * FROM tirmidzi WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire . "SELECT * FROM tirmidzi WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}else{
-					$quire = $quire . " UNION SELECT * FROM tirmidzi WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%'";
+					$quire = $quire . " UNION SELECT * FROM tirmidzi WHERE Isi_Indonesia  LIKE '%".$this->input->post('cari')."%' ";
 				}
 			}else{
 
@@ -144,7 +150,7 @@ class GetData extends CI_Controller {
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'GetData/filter_next/';
 		$config['total_rows'] = $jumlah_data;
-		$config['per_page'] = 5;
+		$config['per_page'] = 15;
 		// $config['next_link'] = 'Selanjutnya';
 
 		// $config['prev_link'] = 'Sebelumnya';
@@ -167,11 +173,11 @@ class GetData extends CI_Controller {
 		$config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
 		$config['last_tagl_close']  = '</span></li>';
 
-		$limit = 5;
+		$limit = 15;
 		$from = '0'+$this->uri->segment(3);
 		$limit = $limit + $from;
 		$this->pagination->initialize($config);		
-		$data['hadis'] = $this->db->query($quire." LIMIT ".$from.",".$limit)->result();
+		$data['hadis'] = $this->db->query($quire." LIMIT ".$limit." OFFSET ".$from)->result();
 		$data['kunci'] = $this->input->post('cari');
 		$this->load->view('datafilter',$data);
 	}

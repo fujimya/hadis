@@ -75,6 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	// 'hostname' => 'tangkal.com',
+	// 'username' => 'tangkalc_hadis',
+	// 'password' => 'X9q(M?J%B!G6',
+	// 'database' => 'tangkalc_hadis',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',

@@ -6,28 +6,51 @@
   <meta name="author" content="colorlib.com">
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>assets/search/css/main.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-<body>
-  <div class="s003">
-    <form action="<?php echo base_url(); ?>GetData/filter" method="post">
-      <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="ahmad">
-            <label class="form-check-label" for="exampleCheck1">Ahmad</label>
-            <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="annasai">
-            <label class="form-check-label" for="exampleCheck1">Annasai</label>
-            <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="bukhari">
-            <label class="form-check-label" for="exampleCheck1">Bukhari</label>
-            <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="ibnu_majah">
-            <label class="form-check-label" for="exampleCheck1">Ibnu Majah</label>
-            <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="malik">
-            <label class="form-check-label" for="exampleCheck1">Malik</label>
-            <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="muslim">
-            <label class="form-check-label" for="exampleCheck1">Muslim</label>
-            <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="tirmizi">
-            <label class="form-check-label" for="exampleCheck1">Tirmizi</label>
-          </div>
-          <br>
-      <div class="inner-form">
+<body><nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand" href="#">Cari Hadis</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(); ?>Tentang">Tentang</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url(); ?>Dokumentasi">Dokumentasi</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
+<div class="s003">
+  <form action="<?php echo base_url(); ?>GetData/filter" method="post">
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="ahmad">
+      <label class="form-check-label" for="exampleCheck1">Ahmad</label>
+      <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="annasai">
+      <label class="form-check-label" for="exampleCheck1">Annasai</label>
+      <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="bukhari">
+      <label class="form-check-label" for="exampleCheck1">Bukhari</label>
+      <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="ibnu_majah">
+      <label class="form-check-label" for="exampleCheck1">Ibnu Majah</label>
+      <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="malik">
+      <label class="form-check-label" for="exampleCheck1">Malik</label>
+      <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="muslim">
+      <label class="form-check-label" for="exampleCheck1">Muslim</label>
+      <input type="checkbox" class="form-check-input" id="imam" name="imam[]" value="tirmizi">
+      <label class="form-check-label" for="exampleCheck1">Tirmizi</label>
+    </div>
+    <br>
+    <div class="inner-form">
           <!-- <div class="input-field first-wrap">
             <div class="input-select">
               <select data-trigger="" name="choices-single-defaul">
